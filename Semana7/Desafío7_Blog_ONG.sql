@@ -1,7 +1,8 @@
---Crea base DB
+-- Crea base DB
+DROP DATABASE IF EXISTS Blog_ONG;
 CREATE DATABASE Blog_ONG;
 
---Usa DB
+-- Usa DB
 USE Blog_ONG;
 
 -- Crea tabla USUARIO y PK
@@ -12,15 +13,14 @@ CREATE TABLE USUARIO (
   telefono VARCHAR(14),
   username VARCHAR(10),
   email VARCHAR(45),
-  contrasena VARCHAR(10),
-  estado VARCHAR(15) DEFAULT 'Activo',
+  contrasena VARCHAR(16),
+  estado VARCHAR(15) CHECK (estado='activo' Or estado='inactivo'),
   fecha_creacion DATETIME NOT NULL,
   avatar BLOB,
   es_publico BOOLEAN,
   es_colaborador BOOLEAN,
   es_admin BOOLEAN,
-  PRIMARY KEY (id),
-
+  PRIMARY KEY (id)
 );
 
 -- Crea tabla ARTICULO, PK y FK
@@ -34,7 +34,7 @@ CREATE TABLE ARTICULO (
   estado VARCHAR(15) DEFAULT 'Publicado',
   imagen BLOB,
   PRIMARY KEY (id),
-  FOREIGN KEY (id_usuario) REFERENCES Blog_ONG  USUARIO(id)
+  FOREIGN KEY (id_usuario) REFERENCES USUARIO(id)
 );
 
 -- Crea tabla COMENTARIO, PK y FK
@@ -46,16 +46,8 @@ CREATE TABLE COMENTARIO (
   fecha_hora DATETIME,
   estado VARCHAR(15) DEFAULT 'Publicado',
   PRIMARY KEY (id),
-  FOREIGN KEY (id_articulo) REFERENCES Blog_ONG  ARTICULO(id),
-  FOREIGN KEY (id_usuario) REFERENCES Blog_ONG  USUARIO(id)
-);
-
--- Crea tabla CATEGORIA_ARTICULO y FK
-CREATE TABLE CATEGORIA_ARTICULO (
-  id_articulo INT NOT NULL,
-  id_categoria INT NOT NULL,
-  FOREIGN KEY (id_articulo) REFERENCES Blog_ONG  ARTICULO(id),
-  FOREIGN KEY (id_categoria) REFERENCES Blog_ONG  CATEGORIA(id)
+  FOREIGN KEY (id_articulo) REFERENCES ARTICULO(id),
+  FOREIGN KEY (id_usuario) REFERENCES USUARIO(id)
 );
 
 -- Crea tabla CATEGORIA, PK y FK
@@ -66,7 +58,14 @@ CREATE TABLE CATEGORIA (
   imagen BLOB,
   estado VARCHAR(15) DEFAULT 'Activo',
   PRIMARY KEY (id)
-  FOREIGN KEY (id_categoria) REFERENCES Blog_ONG  CATEGORIA(id)
+);
+
+-- Crea tabla CATEGORIA_ARTICULO y FK
+CREATE TABLE CATEGORIA_ARTICULO (
+  id_articulo INT NOT NULL,
+  id_categoria INT NOT NULL,
+  FOREIGN KEY (id_articulo) REFERENCES ARTICULO(id),
+  FOREIGN KEY (id_categoria) REFERENCES CATEGORIA(id)
 );
 
 /* Agrega usuarios con roles */
@@ -86,16 +85,19 @@ VALUES
  
 /*Actualiza uno de los usuarios a admin*/
  
-  UPDATE USUARIO SET es_admin = true WHERE id = [5]; 
+  UPDATE USUARIO SET es_admin = true WHERE id = 5; 
 
 -- Introduce artículos y sus estados
 
-INSERT INTO ARTICULO (id_usuario, titulo, resumen, contenido, fecha_publicacion, estado) 
-VALUES 
-  ([7], 'Artículo1', 'Resumen1', 'Contenido1', CURDATE(), true),
-  ([9], 'Artículo2', 'Resumen2', 'Contenido2', CURDATE(), true),
-  ([8], 'Artículo3', 'Resumen3', 'Contenido3', CURDATE(), true),
-  ([10], 'Artículo4', 'Resumen4', 'Contenido4', CURDATE(), false);
+INSERT INTO ARTICULO (id_usuario, titulo, resumen, contenido, fecha_publicacion, estado)
+VALUES
+   (7, 'Artículo1', 'Resumen1', 'Contenido1', CURDATE(), true),
+   (9, 'Artículo2', 'Resumen2', 'Contenido2', CURDATE(), true),
+   (8, 'Artículo3', 'Resumen3', 'Contenido3', CURDATE(), true),
+   (10, 'Artículo4', 'Resumen4', 'Contenido4', CURDATE(), false),
+   (7, 'Artículo5', 'Resumen5', 'Contenido5', CURDATE(), true),
+   (8, 'Artículo8', 'Resumen8', 'Contenido8', CURDATE(), true);
+
 
 /* Elimina el artículo con estado False*/
 
@@ -105,11 +107,11 @@ VALUES
   
 INSERT INTO COMENTARIO (id_articulo, id_usuario, contenido, fecha_hora) 
 VALUES 
-  ([5], [7], 'Comentario 1 del artículo 5', NOW()),
-  ([5], [9], 'Comentario 2 del artículo 5', NOW()),
-  ([5], [6], 'Comentario 3 del artículo 5', NOW()),
-  ([8], [6], 'Comentario 1 del artículo 8', NOW()),
-  ([8], [8], 'Comentario 2 del artículo 8', NOW());
+  (5, 7, 'Comentario 1 del artículo 5', NOW()),
+  (5, 9, 'Comentario 2 del artículo 5', NOW()),
+  (5, 8, 'Comentario 3 del artículo 5', NOW()),
+  (8, 6, 'Comentario 1 del artículo 8', NOW()),
+  (8, 8, 'Comentario 2 del artículo 8', NOW());
   
 /*Listar los artículos que tengan comentarios*/
   
