@@ -65,7 +65,7 @@ CREATE TABLE CATEGORIA (
   descripcion VARCHAR(100),
   imagen BLOB,
   estado VARCHAR(15) DEFAULT 'Activo',
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
   FOREIGN KEY (id_categoria) REFERENCES CATEGORIA(id)
 );
 
@@ -86,16 +86,16 @@ VALUES
  
 /*Actualiza uno de los usuarios a admin*/
  
-  UPDATE USUARIO SET es_admin = true WHERE id = [5]; 
+  UPDATE USUARIO SET es_admin = true WHERE id = 5; 
 
 -- Introduce artículos y sus estados
 
 INSERT INTO ARTICULO (id_usuario, titulo, resumen, contenido, fecha_publicacion, estado) 
 VALUES 
-  ([7], 'Artículo1', 'Resumen1', 'Contenido1', CURDATE(), true),
-  ([9], 'Artículo2', 'Resumen2', 'Contenido2', CURDATE(), true),
-  ([8], 'Artículo3', 'Resumen3', 'Contenido3', CURDATE(), true),
-  ([10], 'Artículo4', 'Resumen4', 'Contenido4', CURDATE(), false);
+  (7, 'Artículo1', 'Resumen1', 'Contenido1', CURDATE(), true),
+  (9, 'Artículo2', 'Resumen2', 'Contenido2', CURDATE(), true),
+  (8, 'Artículo3', 'Resumen3', 'Contenido3', CURDATE(), true),
+  (10, 'Artículo4', 'Resumen4', 'Contenido4', CURDATE(), false);
 
 /* Elimina el artículo con estado False*/
 
@@ -105,11 +105,11 @@ VALUES
   
 INSERT INTO COMENTARIO (id_articulo, id_usuario, contenido, fecha_hora) 
 VALUES 
-  ([5], [7], 'Comentario 1 del artículo 5', NOW()),
-  ([5], [9], 'Comentario 2 del artículo 5', NOW()),
-  ([5], [6], 'Comentario 3 del artículo 5', NOW()),
-  ([8], [6], 'Comentario 1 del artículo 8', NOW()),
-  ([8], [8], 'Comentario 2 del artículo 8', NOW());
+  (5, 7, 'Comentario 1 del artículo 5', NOW()),
+  (5, 9, 'Comentario 2 del artículo 5', NOW()),
+  (5, 6, 'Comentario 3 del artículo 5', NOW()),
+  (8, 6, 'Comentario 1 del artículo 8', NOW()),
+  (8, 8, 'Comentario 2 del artículo 8', NOW());
   
 /*Listar los artículos que tengan comentarios*/
   
