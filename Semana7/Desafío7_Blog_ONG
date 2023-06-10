@@ -1,5 +1,4 @@
 --Crea base DB
-DROP DATABASE IF EXISTS Blog_ONG;
 CREATE DATABASE Blog_ONG;
 
 --Usa DB
