@@ -89,15 +89,15 @@ VALUES
 
 -- Introduce artículos y sus estados
 
-INSERT INTO ARTICULO (id_usuario, titulo, resumen, contenido, fecha_publicacion, estado) 
-VALUES 
-  
-  (7, 'Artículo1', 'Resumen1', 'Contenido1', CURDATE(), true),
-  (9, 'Artículo2', 'Resumen2', 'Contenido2', CURDATE(), true),
-  (8, 'Artículo3', 'Resumen3', 'Contenido3', CURDATE(), true),
-  (10, 'Artículo4', 'Resumen4', 'Contenido4', CURDATE(), false),
-  ('Artículo5', 'Resumen5', 'Contenido5', CURDATE(), true),
-  ('Artículo8', 'Resumen8', 'Contenido8', CURDATE(), true);
+INSERT INTO ARTICULO (id_usuario, titulo, resumen, contenido, fecha_publicacion, estado)
+VALUES
+   (7, 'Artículo1', 'Resumen1', 'Contenido1', CURDATE(), true),
+   (9, 'Artículo2', 'Resumen2', 'Contenido2', CURDATE(), true),
+   (8, 'Artículo3', 'Resumen3', 'Contenido3', CURDATE(), true),
+   (10, 'Artículo4', 'Resumen4', 'Contenido4', CURDATE(), false),
+   (7, 'Artículo5', 'Resumen5', 'Contenido5', CURDATE(), true),
+   (8, 'Artículo8', 'Resumen8', 'Contenido8', CURDATE(), true);
+
 
 /* Elimina el artículo con estado False*/
 
@@ -109,7 +109,7 @@ INSERT INTO COMENTARIO (id_articulo, id_usuario, contenido, fecha_hora)
 VALUES 
   (5, 7, 'Comentario 1 del artículo 5', NOW()),
   (5, 9, 'Comentario 2 del artículo 5', NOW()),
-  (5, 6, 'Comentario 3 del artículo 5', NOW()),
+  (5, 8, 'Comentario 3 del artículo 5', NOW()),
   (8, 6, 'Comentario 1 del artículo 8', NOW()),
   (8, 8, 'Comentario 2 del artículo 8', NOW());
   
