@@ -13,7 +13,7 @@ CREATE TABLE USUARIO (
   telefono VARCHAR(14),
   username VARCHAR(10),
   email VARCHAR(45),
-  contrasena VARCHAR(10),
+  contrasena VARCHAR(16),
   estado VARCHAR(15) CHECK (estado='activo' Or estado='inactivo'),
   fecha_creacion DATETIME NOT NULL,
   avatar BLOB,
@@ -50,14 +50,6 @@ CREATE TABLE COMENTARIO (
   FOREIGN KEY (id_usuario) REFERENCES USUARIO(id)
 );
 
--- Crea tabla CATEGORIA_ARTICULO y FK
-CREATE TABLE CATEGORIA_ARTICULO (
-  id_articulo INT NOT NULL,
-  id_categoria INT NOT NULL,
-  FOREIGN KEY (id_articulo) REFERENCES ARTICULO(id),
-  FOREIGN KEY (id_categoria) REFERENCES CATEGORIA(id)
-);
-
 -- Crea tabla CATEGORIA, PK y FK
 CREATE TABLE CATEGORIA (
   id INT NOT NULL AUTO_INCREMENT,
@@ -65,7 +57,14 @@ CREATE TABLE CATEGORIA (
   descripcion VARCHAR(100),
   imagen BLOB,
   estado VARCHAR(15) DEFAULT 'Activo',
-  PRIMARY KEY (id),
+  PRIMARY KEY (id)
+);
+
+-- Crea tabla CATEGORIA_ARTICULO y FK
+CREATE TABLE CATEGORIA_ARTICULO (
+  id_articulo INT NOT NULL,
+  id_categoria INT NOT NULL,
+  FOREIGN KEY (id_articulo) REFERENCES ARTICULO(id),
   FOREIGN KEY (id_categoria) REFERENCES CATEGORIA(id)
 );
 
@@ -92,10 +91,13 @@ VALUES
 
 INSERT INTO ARTICULO (id_usuario, titulo, resumen, contenido, fecha_publicacion, estado) 
 VALUES 
+  
   (7, 'Artículo1', 'Resumen1', 'Contenido1', CURDATE(), true),
   (9, 'Artículo2', 'Resumen2', 'Contenido2', CURDATE(), true),
   (8, 'Artículo3', 'Resumen3', 'Contenido3', CURDATE(), true),
-  (10, 'Artículo4', 'Resumen4', 'Contenido4', CURDATE(), false);
+  (10, 'Artículo4', 'Resumen4', 'Contenido4', CURDATE(), false),
+  ('Artículo5', 'Resumen5', 'Contenido5', CURDATE(), true),
+  ('Artículo8', 'Resumen8', 'Contenido8', CURDATE(), true);
 
 /* Elimina el artículo con estado False*/
 
