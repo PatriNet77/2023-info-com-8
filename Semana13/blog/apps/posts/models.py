@@ -17,7 +17,7 @@ class Post(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     texto = models.TextField(null=False)
     activo = models.BooleanField(default=True)
-    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, default='Sin categoría')
+    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, default='Sin categoría') #Relacionado con la clase Categoría
     imagen = models.ImageField(null=True, blank=True, upload_to='media', default='static/post_default.png')
     publicado = models.DateTimeField(default=timezone.now)
 
