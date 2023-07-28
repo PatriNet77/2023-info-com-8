@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,13 +21,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^4%ygvc(*jcg1q0@v^fjnuii=%1^gjh@)l6+6zwtfh69cytohq'
+SECRET_KEY = 'django-insecure-4a%kry8#!$o4&ap-)2x&_-v)253e65fnj3ps_zvu(kaf62eig&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+<<<<<<< HEAD
+=======
+AUTH_USER_MODEL = 'usuario.Usuario'
+
+>>>>>>> main
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'apps.posts',
+    'apps.contacto',
+    'apps.usuario',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +63,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.path.dirname(BASE_DIR),'templates')],
+        'DIRS':[os.path.join(os.path.dirname(BASE_DIR),'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
