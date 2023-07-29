@@ -15,12 +15,12 @@
       <li>{{ i.subtitulo}}</li>
       <li>{{ i.categoria}}</li>
       <br>
-      <a id="botom_post" href="{% url 'apps.posts:post_individual' i.id %}">
+      <a id="boton_post" href="{% url 'apps.posts:post_individual' i.id %}">
         Leer Post
       </a>
       {% empty %}
       <h1>No hay registros. I´m sorry</h1>
 
     {% endfor %}
-
+</div>
 {% endblock %}
