@@ -28,11 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-<<<<<<< HEAD
-=======
 AUTH_USER_MODEL = 'usuario.Usuario'
 
->>>>>>> main
 # Application definition
 
 INSTALLED_APPS = [
