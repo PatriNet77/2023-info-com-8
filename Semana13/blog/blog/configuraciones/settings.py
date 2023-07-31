@@ -31,6 +31,14 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'usuario.Usuario'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'email_a_utilizar@gmail.com'
+EMAIL_HOST_PASSWORD = 'contraseña'
+SITE_NAME = 'Soy_Burro'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -80,12 +88,16 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'Soy_Burrodb',
+#        'USER': 'root',
+#        'PASSWORD': '@100xCienTo571318',
+#        'HOST': 'localhost',
+#        'PORT': 3306,
+#    }
+#}
 
 
 # Password validation
