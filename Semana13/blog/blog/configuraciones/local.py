@@ -3,9 +3,9 @@ from .settings import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Soy_Burrodb',
+        'NAME': 'blog_2db',
         'USER': 'root',
-        'PASSWORD': '@100xCienTo571318',
+        'PASSWORD': 'rw-22.93-jg',
         'HOST': 'localhost',
         'PORT': 3306,
     }
