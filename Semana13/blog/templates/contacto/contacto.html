@@ -2,11 +2,10 @@
 {% load static %}
 
 {% block contenido %}
-
 <center>
-    <form method="POST" style="margin: 200px;">
-        <h1>Tirate un texto si no sabés</h1>
-        <h3>Io te aiudo</h3>
+    <form method="POST" style="margin: 100px;">
+        <h1>Contactanos! Estamos para hacerte reír, o llorar.</h1>
+        <h3>Si no funciona el formulario, mandá señales de humo.</h3>
         <br>
         {% if messages %}
             {% for message in messages %}
@@ -20,5 +19,8 @@
         <input type="submit" value="enviar">
     </form>
 </center>
-
+<center>
+    <h3>Si no funciona el humo, envianos un e-mail.</h3>
+    <a href="elcorreoquedesees@correo.com">Enviar correo.</a>
+</center>
   {% endblock %}
