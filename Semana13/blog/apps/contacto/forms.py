@@ -1,7 +1,17 @@
 from django import forms
-from .models import Contacto
+from .models import Comentario, Post, Categoria
 
-class ContactoForm(forms.ModelForm):
+class ComentarioForm(forms.ModelForm):
     class Meta:
-        model = Contacto
-        fields = ['nombre_apellido', 'email', 'asunto', 'mensaje']
+        model = Comentario
+        fields =["texto"]
+
+class CrearPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = "__all__"
+
+class NuevaCategoriaForm(forms.ModelForm):
+    class Meta: 
+        model= Categoria
+        fields = "__all__"
