@@ -20,7 +20,7 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = ComentarioForm()
-        context['comentarios'] = Comentario.objects.filter(post_id=self.kwargs['id'])
+        context['comentarios'] = Comentario.objects.filter(posts_id=self.kwargs['id'])
         return context
     
     def post(self, request, *args, **kwargs):
@@ -44,6 +44,7 @@ class ComentarioCreateView(LoginRequiredMixin, CreateView):
     
     def form_valid(self, form):
         form.instance.usuario = self.request.user
-        form.instance.post_id = self.kwargs['posts_id']
+#        form.instance.post_id = self.kwargs['posts_id']
+        form.instance.posts_id = self.kwargs['posts_id']
         return super().form_valid(form)
         

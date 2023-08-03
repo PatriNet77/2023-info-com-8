@@ -4,20 +4,19 @@
 {% block contenido %}
   <h1>Solo para NO entendidos</h1>
   <h3>¿Vos ya sabés?... Andá pa´sha, bobo</h3>
-  <br>
 
-<div class="container-fluid" style="margin: 200px;">
+<div class="container-fluid" style="margin: 100px;">
 
     {% for i in posts %}
 
-      <br>
+      <table class="table table-dark table-striped">
       <li>{{ i.titulo}}</li>
       <li>{{ i.subtitulo}}</li>
       <li>{{ i.categoria}}</li>
-      <br>
       <a id="botom_post" href="{% url 'apps.posts:post_individual' i.id %}">
         Leer Post
       </a>
+      </table>
       {% empty %}
       <h1>No hay registros. I´m sorry</h1>
 
