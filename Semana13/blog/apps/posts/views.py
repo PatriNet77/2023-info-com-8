@@ -115,7 +115,6 @@ class ComentarioCreateView(LoginRequiredMixin, CreateView):
     
     def form_valid(self, form):
         form.instance.usuario = self.request.user
-#        form.instance.post_id = self.kwargs['posts_id']
         form.instance.posts_id = self.kwargs['posts_id']
         return super().form_valid(form)
 
