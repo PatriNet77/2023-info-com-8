@@ -1,0 +1,83 @@
+{% load static %}
+
+<!doctype html>
+<html lang="es-ar">
+
+<head>
+  <title>{% block title %} Inicio de tu desburración {% endblock title %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+</head>
+
+ <header>
+    <!-- place navbar here -->
+    <a class="flex-sm-fill text-sm-center nav-link active" href="#">
+        <img src="{% static 'img/ia_top.jpg' %}" style="max-width: 400px; margin: 30px;">
+    </a>
+
+    <!-- <div class="text-bg-dark p-3">Dark with contrasting color</div> -->
+    <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Home</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Profile</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Contact</button>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            M&aacute;s
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'index' %}">Inicio</a></li>
+            <li><a class="dropdown-item" href="{% url 'apps.posts:posts' %}">Posts</a></li>
+            <li><a class="dropdown-item" href="{% url 'apps.contacto:contacto' %}">Contacto</a></li>
+            {% if user.is_authenticated %}
+                    <li><a href="{% url 'apps.usuario:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'apps.usuario:login' %}">Login</a></li>
+            {% endif %}
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Acerca de nosotros</a></li>
+          </ul>
+        </li>
+    </ul>
+    
+    <!-- <nav class="nav nav-pills flex-column flex-sm-row">
+        <a class="flex-sm-fill text-sm-center nav-link active" href="#">Active</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#">Longer nav link</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#">Link</a>
+        <a class="flex-sm-fill text-sm-center nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+
+        <!-- <div>
+            <ul class="nav-links">
+                <li><a href="{% url 'index' %}">Inicio</a></li>
+                <li><a href="#">Acerca de nosotros</a></li>
+                <li><a href="{% url 'apps.posts:posts' %}">Posts</a></li>
+                <li><a href="{% url 'apps.contacto:contacto' %}">Contacto</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'apps.usuario:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'apps.usuario:login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div> -->
+    </nav>
+
+    {% block contenido %}
+
+    {% endblock %} 
+
+    </header>
+
+ <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="margin-top: 98px;">
+    <!-- place footer here -->
+    <div class="container text-center">
+        <small>Copyright &copy; COM8 "Super Compas"</small>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+ </footer>
+
+
