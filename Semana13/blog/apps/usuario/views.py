@@ -8,29 +8,30 @@ from django.urls import reverse
 # Create your views here.
 
 class RegistrarUsuario(CreateView):
-    template_name = 'registration/registrar.html' 
     form_class = RegistroUsuarioForm
-    
+    template_name = 'registration/registrar.html' 
+        
     def form_valid(self, form):
         messages.success(self.request, 'Registro exitoso. Por favor, inicia sesión')
         form.save()
         
-        return redirect('apps.usuario:registrar')
+        return redirect('apps.usuario:login')
     
 class LoginUsuario(LoginView):
     template_name = 'registration/login.html'
     
     def get_success_url(self):
-        messages.success(self.request, 'login exitoso')
+        messages.success(self.request, 'Ya era hora! Dónde andabas?.')
         
-        return reverse('apps.usuario:login')
+        return reverse('index')
     
 class LogoutUsuario(LogoutView):
     template_name = 'registration/logout.html'
     
     def get_success_url(self):
-        messages.success(self.request, 'logout exitoso')
+        messages.success(self.request, 'Te fuiste, traidor!')
         
-        return reverse('apps.usuario:logout')
+        return reverse('index')
     
-        
+#class ProfileViews(CustomTemplateView):
+#    template_name = 'usuario/profile.html'

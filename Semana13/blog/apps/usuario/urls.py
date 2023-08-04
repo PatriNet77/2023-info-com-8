@@ -3,6 +3,8 @@ from . import views
 from .views import LoginUsuario
 from django.contrib.auth import views as auth_views
 
+
+
 app_name = 'apps.usuario'
 
 urlpatterns = [
