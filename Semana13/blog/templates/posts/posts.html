@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% load  static %}
+{% load colaborador_tags %}
 
 {% block title %} Todos los post {% endblock title %}
 
@@ -19,6 +20,13 @@
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       Categorías
     </button>
+
+{% if user.is_superuser or request.user|has_group:"Colaborador" %}
+    <div class="container-fluid" style="margin-top: 100px;">
+        <a id="boton_post" href="{% url 'apps.posts:post_crear' %}">Nuevo Post</a>
+    </div>
+{% endif %}
+
     <ul class="dropdown-menu">
 
       {% for cat in categoria %}

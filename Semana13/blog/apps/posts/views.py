@@ -70,18 +70,18 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     model= Post
     form_class = CrearPostForm
     template_name = 'posts/post_crear.html'
-    success_url = reverse_lazy('apps.post:posts')
+    success_url = reverse_lazy('apps.posts:posts')
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = CrearPostForm
     template_name = 'posts/post_modificar.html'
-    success_url = reverse_lazy('apps.post:posts')
+    success_url = reverse_lazy('apps.posts:posts')
 
 class PostDeleteView(DeleteView):
     model = Post
     template_name = 'posts/post_eliminar.html'
-    success_url = reverse_lazy('apps.post:posts')
+    success_url = reverse_lazy('apps.posts:posts')
 
 #Categoría crear, listar, eliminar
 class CategoriaCreateView(LoginRequiredMixin, CreateView):
@@ -94,7 +94,7 @@ class CategoriaCreateView(LoginRequiredMixin, CreateView):
         if next_url:
             return next_url
         else:
-            return reverse_lazy('apps.post:post_crear')
+            return reverse_lazy('apps.posts:post_crear')
 
 class CategoriaListView(ListView):
     model = Categoria
@@ -104,7 +104,7 @@ class CategoriaListView(ListView):
 class CategoriaDeleteView(LoginRequiredMixin, DeleteView):
     model = Categoria
     template_name = 'posts/categoria_eliminar.html'
-    success_url = reverse_lazy('apps.post:categoria_lista')
+    success_url = reverse_lazy('apps.posts:categoria_lista')
 
 #Comentario crear, modificar, eliminar
 class ComentarioCreateView(LoginRequiredMixin, CreateView):
@@ -127,10 +127,10 @@ class ComentarioUpdateView(LoginRequiredMixin, UpdateView):
         if next_url:
             return next_url
         else:
-            return reverse('apps.post:post_individual', args=[self.object.posts.id])
+            return reverse('apps.posts:post_individual', args=[self.object.posts.id])
 
 class ComentarioDeleteView(LoginRequiredMixin, DeleteView):
     model = Comentario
     template_name = 'comentario/comentario_eliminar.html'
     def get_success_url(self):
-        return reverse('apps.post:post_individual', args=[self.object.posts.id])
+        return reverse('apps.posts:post_individual', args=[self.object.posts.id])
