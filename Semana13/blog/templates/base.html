@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!doctype html>
 <html lang="es-ar">
 
@@ -37,9 +38,23 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Profile</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <table>
+                  <tr>
+                    {% if user.is_superuser %}
+                      <td><a href="{% url 'apps.usuario:usuario_lista' %}">Lista de Usuarios</a></td>
+                    {% endif %}
+                  </tr>
+                  <tr>
+                      <td><a href="{% url 'apps.posts:categoria_lista' %}">Lista de Categor&iacute;as</a></td>
+                  </tr>
+                  <tr>
+                      <td><a href="#">Lista de Posts</a></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 M&aacute;s
@@ -49,7 +64,7 @@
                 <li><a class="dropdown-item" href="{% url 'apps.posts:posts' %}">Posts</a></li>
                 <li><a class="dropdown-item" href="{% url 'apps.contacto:contacto' %}">Contacto</a></li>
                 {% if user.is_authenticated %}
-                  <li><a href="{% url 'apps.usuario:logout' %}">Logout</a></li>
+                  <li><a href="{% url 'apps.usuario:logout' %}">{{ user.username }}: Logout</a></li>
                 {% else %}
                   <li><a href="{% url 'apps.usuario:login' %}">Login</a></li>
                 {% endif %}

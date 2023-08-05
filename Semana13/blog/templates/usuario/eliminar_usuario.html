@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load colaborador_tags %}
+
+{% block contenido %}
+<center>
+{% if user.is_superuser or request.user|has_group:"Colaborador" %}
+<div class="container-fluid" style="margin: 200px;">
+    <h1>Eliminar usuario</h1><br>
+    <p>¿Est&aacute;s seguro de que quieres eliminar el usuario "{{ object.username }}"?</p><br>
+    <form method="post">
+        {% csrf_token %}
+        <label for="eliminar_comentarios">¿Desea eliminar tambi&eacute;n los comentarios del usuario?</label>
+        <input type="checkbox" name="eliminar_comentarios" id="eliminar_comentarios">
+        <br><br>
+        {% if es_colaborador %}
+            <label for="eliminar_posts">¿Desea eliminar tambi&eacute;n los posts del usuario?</label>
+            <input type="checkbox" name="eliminar_posts" id="eliminar_posts">
+            <br><br>
+        {% endif %}
+
+        <input type="submit" value="Sí, eliminar">
+        <a style="color: black;" href="{% url 'apps.usuario:usuario_lista' %}">No, cancelar</a>
+    </form>
+</div>
+{% else %}
+    <div class="container-fluid" style="margin: 200px;">
+        <h1>Necesit&aacute;s un Superpermiso para esta aqu&iacute;</h1>
+    </div>
+{% endif %}
+</center>
+{% endblock %}

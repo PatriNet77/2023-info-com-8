@@ -10,13 +10,13 @@ class RegistroUsuarioForm(UserCreationForm):
         model = Usuario
         fields = ['username', 'first_name', 'last_name', 'password1', 'password2', 'email', 'imagen']
         
-    def clean_email(self):
-        email_field = self.cleaned_data['email']
-        
-        if Usuario.objects.filter(email=email_field).exist():
-            raise forms.ValidationError('Este correo ya está registrado')
-        
-        return email_field
+#    def clean_email(self):
+#        email_field = self.cleaned_data['email']
+#        
+#        if Usuario.objects.filter(email=email_field).exist():
+#            raise forms.ValidationError('Este correo ya está registrado')
+#        
+#        return email_field
         
 class LoginForm(forms.Form):
     username = forms.CharField(label='Nombre de usuario')

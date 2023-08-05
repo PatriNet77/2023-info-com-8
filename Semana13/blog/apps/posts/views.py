@@ -106,6 +106,14 @@ class CategoriaDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'posts/categoria_eliminar.html'
     success_url = reverse_lazy('apps.posts:categoria_lista')
 
+class PostsPorCategoriaView(ListView):
+    model = Post
+    template_name = 'posts/posts_por_categoria.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        return Post.objects.filter(categoria_id=self.kwargs['pk'])
+
 #Comentario crear, modificar, eliminar
 class ComentarioCreateView(LoginRequiredMixin, CreateView):
     model = Comentario

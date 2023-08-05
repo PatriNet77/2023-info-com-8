@@ -1,10 +1,6 @@
 from django.contrib import admin
-from .models import Categoria, Post, Comentario
+from .models import Contacto
 
-@admin.register(Post)
-class PostsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'titulo', 'subtitulo', 'fecha', 'texto', 'activo', 'categoria', 'imagen', 'publicado')
-    list_filter = ('activo', 'categoria')
-    
-admin.site.register(Categoria)
-admin.site.register(Comentario)
+@admin.register(Contacto)
+class ContactoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nombre_apellido', 'email', 'asunto', 'fecha')

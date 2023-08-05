@@ -1,6 +1,6 @@
 {% extends 'base.html' %} 
 {% load  static %}
-{% load colaborador_tags %}
+
 
 {% block title %} Todos los post {% endblock title %}
 
@@ -21,7 +21,7 @@
       Categorías
     </button>
 
-{% if user.is_superuser or request.user|has_group:"Colaborador" %}
+{% if user.is_superuser %}
     <div class="container-fluid" style="margin-top: 100px;">
         <a id="boton_post" href="{% url 'apps.posts:post_crear' %}">Nuevo Post</a>
     </div>
@@ -45,7 +45,7 @@
 
         <div class="post-header">
           <div class="post-img">
-            <img width="100%" height="200px" style="object-fit: cover" src="{{ i.imagen.url }}" alt=""/> 
+            <img width="50%" height="200px" style="object-fit: cover" src="{{ i.imagen.url }}" alt=""/> 
           </div>
         </div>
 
@@ -54,8 +54,11 @@
           <span>{{ i.fecha }}</span>
           <h2>{{ i.titulo }}</h2>
           <h3>Por {{i.usuario}}</h3>
+          <h2>{{ i.categoria }}</h2>
           <p>{{ i.texto|truncatewords:30 }}</p>
           <a href="{% url 'apps.posts:post_individual' i.id %}" class="post-link">Leer Mas...</a>
+          {% empty %}
+          <h1>No hay nada</h1>
         </div>
 
       </article>
